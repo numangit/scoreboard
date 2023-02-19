@@ -60,7 +60,6 @@ const store = Redux.createStore(counterReducer);
 
 const render = () => {
     const state = store.getState();
-    console.log(state);
     if (state > 0) {
         scoreEl.innerText = 0;
     } else {
