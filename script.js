@@ -11,7 +11,6 @@ const RESET = "reset";
 
 // action creators
 const increment = (value, id,) => {
-    console.log(value, id);
     return {
         type: INCREMENT,
         payload: { value, id },
@@ -40,7 +39,6 @@ const reset = () => {
 //match states
 const allMatchState = [
     { id: 1, matchNo: 1, score: 120 },
-    { id: 2, matchNo: 2, score: 0 },
 ];
 
 // create reducer function
@@ -91,28 +89,6 @@ function counterReducer(state = allMatchState, action) {
 // create store
 const store = Redux.createStore(counterReducer);
 
-// event listeners
-function incrementHandler(e, id) {
-    e.preventDefault();
-    const incrementValue = parseInt(e.target.increment.value);
-    // console.log(e, id, incrementValue);
-    store.dispatch(increment(incrementValue, id));
-    e.target.increment.value = '';
-};
-
-function decrementHandler(e, id) {
-    e.preventDefault();
-    const decrementValue = parseInt(e.target.decrement.value);
-    // console.log(e, id, decrementValue);
-    store.dispatch(decrement(decrementValue, id));
-    e.target.decrement.value = '';
-};
-
-const render = () => {
-    const state = store.getState();
-    displayMatches();
-};
-
 //function to display matches
 const displayMatches = () => {
     const state = store.getState();
@@ -145,27 +121,39 @@ const displayMatches = () => {
         allMatchContainerEl.appendChild(newDiv);
     });
 }
-displayMatches();
-// update UI initially
-render();
 
+const render = () => {
+    const state = store.getState();
+    displayMatches();
+};
+
+render();
 store?.subscribe(render);
+
+// event listeners
+function incrementHandler(e, id) {
+    e.preventDefault();
+    const incrementValue = parseInt(e.target.increment.value);
+    store.dispatch(increment(incrementValue, id));
+    e.target.increment.value = '';
+};
+
+function decrementHandler(e, id) {
+    e.preventDefault();
+    const decrementValue = parseInt(e.target.decrement.value);
+    store.dispatch(decrement(decrementValue, id));
+    e.target.decrement.value = '';
+};
 
 //add match btn
 addMatchBtnEl.addEventListener("click", () => {
-    // const newState = { id: allMatchState.length + 1, matchNo: allMatchState.length + 1, score: 0 };
-    // allMatchState.push(newState);
     store.dispatch({ type: ADDMATCH });
-    // console.log(store.getState());
-    // render();
 });
 
 //reset btn
 resetBtnEl.addEventListener("click", () => {
-    console.log('reseet');
-    allMatchState.forEach(match => {
-        match.score = 0;
-    });
-    // store.dispatch({ type: RESET });
-    render();
+    store.dispatch({ type: RESET });
 })
+
+// update UI initially
+displayMatches();
