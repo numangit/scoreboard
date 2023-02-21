@@ -127,9 +127,6 @@ const render = () => {
     displayMatches();
 };
 
-render();
-store?.subscribe(render);
-
 // event listeners
 function incrementHandler(e, id) {
     e.preventDefault();
@@ -147,13 +144,15 @@ function decrementHandler(e, id) {
 
 //add match btn
 addMatchBtnEl.addEventListener("click", () => {
-    store.dispatch({ type: ADDMATCH });
+    store.dispatch(addMatch());
 });
 
 //reset btn
 resetBtnEl.addEventListener("click", () => {
-    store.dispatch({ type: RESET });
+    store.dispatch(reset());
 })
 
 // update UI initially
 displayMatches();
+render();
+store?.subscribe(render);
