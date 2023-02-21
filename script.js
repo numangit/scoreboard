@@ -78,14 +78,11 @@ function counterReducer(state = allMatchState, action) {
         updatedState.push(newState);
         return updatedState;
     } else if (action.type === RESET) {
-        // return [{...state}, ]
-
-        // state.map(match => {
-        // return {
-        //     ...match,
-        //     score: 0
-        // }
-        // })
+        const updatedState = [...state];
+        updatedState.forEach(match => {
+            match.score = 0;
+        })
+        return updatedState;
     } else {
         return state;
     }
