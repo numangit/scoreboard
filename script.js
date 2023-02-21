@@ -38,7 +38,7 @@ const reset = () => {
 
 //match states
 const allMatchState = [
-    { id: 1, matchNo: 1, score: 120 },
+    { id: 1, matchNo: 1, score: 0 },
 ];
 
 // create reducer function
