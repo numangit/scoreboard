@@ -73,10 +73,10 @@ function counterReducer(state = allMatchState, action) {
         });
         return updatedState;
     } else if (action.type === ADDMATCH) {
-        return [
-            ...state,
-            { id: state.length + 1, matchNo: state.length + 1, score: 0 }
-        ]
+        const updatedState = [...state];
+        const newState = { id: state.length + 1, matchNo: state.length + 1, score: 0 };
+        updatedState.push(newState);
+        return updatedState;
     } else if (action.type === RESET) {
         // return [{...state}, ]
 
