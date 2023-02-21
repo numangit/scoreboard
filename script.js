@@ -122,12 +122,13 @@ const displayMatches = () => {
     });
 }
 
+//function to render updated state
 const render = () => {
     const state = store.getState();
     displayMatches();
 };
 
-// event listeners
+//event handler for increment input
 function incrementHandler(e, id) {
     e.preventDefault();
     const incrementValue = parseInt(e.target.increment.value);
@@ -135,6 +136,7 @@ function incrementHandler(e, id) {
     e.target.increment.value = '';
 };
 
+//event handler for decrement input
 function decrementHandler(e, id) {
     e.preventDefault();
     const decrementValue = parseInt(e.target.decrement.value);
@@ -142,12 +144,12 @@ function decrementHandler(e, id) {
     e.target.decrement.value = '';
 };
 
-//add match btn
+//event handler for add match btn
 addMatchBtnEl.addEventListener("click", () => {
     store.dispatch(addMatch());
 });
 
-//reset btn
+//event handler for reset btn
 resetBtnEl.addEventListener("click", () => {
     store.dispatch(reset());
 })
