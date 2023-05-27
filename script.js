@@ -96,7 +96,7 @@ const displayMatches = () => {
     state?.forEach(match => {
         const newDiv = document.createElement("div");
         newDiv.setAttribute("id", match.id)
-        newDiv.classList.add("class", "match");
+        newDiv.classList.add("match");
         newDiv.innerHTML = `
             <div class="wrapper">
                 <button class="lws-delete">
